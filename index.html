@@ -1,12 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>PHC Health Assistant OFFLINE</title>
+<head>
+
+<meta charset="UTF-8">
+git add index.html
+git commit -m "Add SOS voice button"
+git push
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>PHC Health Assistant</title>
 
 <style>
+
+/* =====================================================
+   BASIC
+===================================================== */
 
 * {
     box-sizing: border-box;
@@ -20,7 +30,10 @@ body {
     color: #222;
 }
 
-/* HEADER */
+
+/* =====================================================
+   HEADER
+===================================================== */
 
 header {
     background: #087f8c;
@@ -47,7 +60,10 @@ nav button {
     font-weight: bold;
 }
 
-/* CONTAINER */
+
+/* =====================================================
+   CONTAINER
+===================================================== */
 
 .container {
     max-width: 850px;
@@ -80,7 +96,10 @@ p {
     margin-bottom: 15px;
 }
 
-/* FORM */
+
+/* =====================================================
+   FORM
+===================================================== */
 
 label {
     display: block;
@@ -111,7 +130,10 @@ textarea {
     resize: vertical;
 }
 
-/* BUTTON */
+
+/* =====================================================
+   BUTTON
+===================================================== */
 
 .btn {
 
@@ -144,7 +166,10 @@ textarea {
     background: #444;
 }
 
-/* HOME BUTTONS */
+
+/* =====================================================
+   HOME BUTTONS
+===================================================== */
 
 .home-buttons {
 
@@ -161,7 +186,69 @@ textarea {
     min-width: 180px;
 }
 
-/* LANGUAGE */
+
+/* =====================================================
+   SOS BUTTON
+===================================================== */
+
+.sos-button {
+
+    width: 100%;
+
+    background: #d00000;
+
+    color: white;
+
+    border: none;
+
+    padding: 17px 20px;
+
+    margin-top: 20px;
+
+    border-radius: 10px;
+
+    font-size: 20px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 4px 12px rgba(208,0,0,0.25);
+
+}
+
+.sos-button:hover {
+
+    background: #a90000;
+
+}
+
+
+/* =====================================================
+   SOS STATUS
+===================================================== */
+
+.sos-message {
+
+    background: #ffe5e5;
+
+    border-left: 5px solid #d00000;
+
+    padding: 15px;
+
+    margin-top: 15px;
+
+    border-radius: 5px;
+
+    font-weight: bold;
+
+}
+
+
+/* =====================================================
+   LANGUAGE
+===================================================== */
 
 .language {
 
@@ -194,13 +281,19 @@ textarea {
     color: white;
 }
 
-/* HIDDEN */
+
+/* =====================================================
+   HIDDEN
+===================================================== */
 
 .hidden {
     display: none;
 }
 
-/* MESSAGES */
+
+/* =====================================================
+   MESSAGES
+===================================================== */
 
 .success {
 
@@ -235,7 +328,10 @@ textarea {
     margin-top: 20px;
 }
 
-/* DASHBOARD */
+
+/* =====================================================
+   DASHBOARD
+===================================================== */
 
 .dashboard {
     text-align: center;
@@ -252,7 +348,10 @@ textarea {
     margin: 20px 0;
 }
 
-/* DOCTOR STATS */
+
+/* =====================================================
+   DOCTOR STATS
+===================================================== */
 
 .stats {
 
@@ -289,7 +388,10 @@ textarea {
     color: #087f8c;
 }
 
-/* CASE */
+
+/* =====================================================
+   CASE
+===================================================== */
 
 .case {
 
@@ -302,7 +404,10 @@ textarea {
     border-radius: 8px;
 }
 
-/* VOICE */
+
+/* =====================================================
+   VOICE
+===================================================== */
 
 .voice-buttons {
 
@@ -313,7 +418,10 @@ textarea {
     flex-wrap: wrap;
 }
 
-/* FOOTER */
+
+/* =====================================================
+   FOOTER
+===================================================== */
 
 footer {
 
@@ -324,9 +432,12 @@ footer {
     color: #666;
 }
 
-/* MOBILE */
 
-@media(max-width: 650px) {
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:650px) {
 
     header {
 
@@ -358,6 +469,7 @@ footer {
 }
 
 </style>
+
 </head>
 
 
@@ -379,19 +491,27 @@ footer {
         <button
             onclick="showPage('home')"
             id="homeNav">
+
             Home
+
         </button>
+
 
         <button
             onclick="showPage('login')"
             id="loginNav">
+
             Login
+
         </button>
+
 
         <button
             onclick="showPage('register')"
             id="registerNav">
+
             Register
+
         </button>
 
     </nav>
@@ -401,7 +521,7 @@ footer {
 
 
 <!-- =====================================================
-     HOME
+     HOME PAGE
 ===================================================== -->
 
 <div
@@ -409,6 +529,7 @@ footer {
     class="container page">
 
     <div class="card">
+
 
         <!-- LANGUAGE -->
 
@@ -423,6 +544,7 @@ footer {
 
             </button>
 
+
             <button
                 id="tamilBtn"
                 onclick="changeLanguage('ta')">
@@ -434,12 +556,18 @@ footer {
         </div>
 
 
+
+        <!-- HEADING -->
+
         <h1 id="homeHeading">
 
             Welcome to PHC Health Assistant
 
         </h1>
 
+
+
+        <!-- DESCRIPTION -->
 
         <p id="homeText">
 
@@ -449,6 +577,9 @@ footer {
 
         </p>
 
+
+
+        <!-- IMPORTANT -->
 
         <div class="warning">
 
@@ -468,6 +599,9 @@ footer {
 
         </div>
 
+
+
+        <!-- REGISTER + LOGIN -->
 
         <div class="home-buttons">
 
@@ -492,6 +626,25 @@ footer {
 
         </div>
 
+
+
+        <!-- =================================================
+             SOS BUTTON
+        ================================================== -->
+
+        <button
+            class="sos-button"
+            onclick="sosEmergency()"
+            id="sosButton">
+
+            🚨 SOS EMERGENCY VOICE
+
+        </button>
+
+
+        <div id="sosStatus"></div>
+
+
     </div>
 
 </div>
@@ -507,6 +660,7 @@ footer {
     class="container page hidden">
 
     <div class="card">
+
 
         <div class="language">
 
@@ -553,7 +707,6 @@ footer {
             placeholder="Enter your name">
 
 
-
         <label id="ageLabel">
 
             🎂 Age
@@ -564,7 +717,6 @@ footer {
             type="number"
             id="age"
             placeholder="Enter your age">
-
 
 
         <label id="mobileLabel">
@@ -579,7 +731,6 @@ footer {
             placeholder="Enter mobile number">
 
 
-
         <label id="pinLabel">
 
             🔐 Create 4-digit PIN
@@ -592,7 +743,6 @@ footer {
             maxlength="4"
             inputmode="numeric"
             placeholder="Enter 4-digit PIN">
-
 
 
         <button
@@ -624,7 +774,7 @@ footer {
 
 
 <!-- =====================================================
-     REGISTRATION SUCCESS
+     SUCCESS
 ===================================================== -->
 
 <div
@@ -696,6 +846,7 @@ footer {
 
     <div class="card">
 
+
         <div class="language">
 
             <button
@@ -741,7 +892,6 @@ footer {
             placeholder="Example: PHC-1001">
 
 
-
         <label id="loginPinLabel">
 
             🔐 4-digit PIN
@@ -754,7 +904,6 @@ footer {
             maxlength="4"
             inputmode="numeric"
             placeholder="Enter your PIN">
-
 
 
         <button
@@ -894,7 +1043,6 @@ footer {
         </p>
 
 
-
         <label id="symptomLabel">
 
             What symptoms are you experiencing?
@@ -907,8 +1055,6 @@ footer {
             placeholder="Example: fever, headache, cough">
         </textarea>
 
-
-        <!-- VOICE BUTTONS -->
 
         <div class="voice-buttons">
 
@@ -932,7 +1078,6 @@ footer {
             </button>
 
         </div>
-
 
 
         <label id="durationLabel">
@@ -982,7 +1127,6 @@ footer {
         </select>
 
 
-
         <label id="severityLabel">
 
             How severe are the symptoms?
@@ -1021,7 +1165,6 @@ footer {
         </select>
 
 
-
         <label id="warningLabel">
 
             Are you experiencing any serious warning signs?
@@ -1049,7 +1192,6 @@ footer {
             </option>
 
         </select>
-
 
 
         <button
@@ -1312,21 +1454,15 @@ let language = "en";
 
 const text = {
 
-
     en: {
 
-        title:
-        "PHC Health Assistant",
+        title: "PHC Health Assistant",
 
-        homeNav:
-        "Home",
+        homeNav: "Home",
 
-        loginNav:
-        "Login",
+        loginNav: "Login",
 
-        registerNav:
-        "Register",
-
+        registerNav: "Register",
 
         homeHeading:
         "Welcome to PHC Health Assistant",
@@ -1346,6 +1482,8 @@ const text = {
         loginHomeBtn:
         "Login",
 
+        sosButton:
+        "🚨 SOS EMERGENCY VOICE",
 
         registerHeading:
         "Patient Registration",
@@ -1383,7 +1521,6 @@ const text = {
         alreadyButton:
         "Already registered? Login",
 
-
         successHeading:
         "Registration Successful",
 
@@ -1398,7 +1535,6 @@ const text = {
 
         goLoginButton:
         "Go to Login",
-
 
         loginHeading:
         "Patient Login",
@@ -1424,7 +1560,6 @@ const text = {
         createAccountButton:
         "Create New Account",
 
-
         dashboardHeading:
         "Patient Dashboard",
 
@@ -1442,7 +1577,6 @@ const text = {
 
         logoutButton:
         "Logout",
-
 
         symptomHeading:
         "Symptom Assessment",
@@ -1504,13 +1638,11 @@ const text = {
         checkButton:
         "Check Urgency",
 
-
         historyHeading:
         "My Health History",
 
         historyBackButton:
         "Back",
-
 
         doctorLoginHeading:
         "PHC Staff Login",
@@ -1533,7 +1665,6 @@ const text = {
         doctorLoginButton:
         "Login",
 
-
         doctorDashboardHeading:
         "PHC Staff Dashboard",
 
@@ -1555,10 +1686,8 @@ const text = {
         doctorLogoutButton:
         "Logout",
 
-
         footer:
         "PHC Health Assistant | Hack Nova",
-
 
         registerError:
         "Please enter your name, age and a valid 4-digit PIN.",
@@ -1581,7 +1710,6 @@ const text = {
         noCases:
         "No patient cases available.",
 
-
         emergency:
         "Emergency",
 
@@ -1590,7 +1718,6 @@ const text = {
 
         routine:
         "Routine",
-
 
         emergencyMessage:
         "Please seek immediate attention from a healthcare professional.",
@@ -1607,10 +1734,6 @@ const text = {
     },
 
 
-    /* =================================================
-       TAMIL
-    ================================================= */
-
     ta: {
 
         title:
@@ -1624,7 +1747,6 @@ const text = {
 
         registerNav:
         "பதிவு",
-
 
         homeHeading:
         "PHC சுகாதார உதவிக்கு வரவேற்கிறோம்",
@@ -1644,6 +1766,8 @@ const text = {
         loginHomeBtn:
         "உள்நுழைக",
 
+        sosButton:
+        "🚨 SOS அவசர குரல்",
 
         registerHeading:
         "நோயாளி பதிவு",
@@ -1681,7 +1805,6 @@ const text = {
         alreadyButton:
         "ஏற்கனவே பதிவு செய்துள்ளீர்களா? உள்நுழைக",
 
-
         successHeading:
         "பதிவு வெற்றிகரமாக முடிந்தது",
 
@@ -1696,7 +1819,6 @@ const text = {
 
         goLoginButton:
         "உள்நுழைவுக்கு செல்லுங்கள்",
-
 
         loginHeading:
         "நோயாளி உள்நுழைவு",
@@ -1722,7 +1844,6 @@ const text = {
         createAccountButton:
         "புதிய கணக்கை உருவாக்கவும்",
 
-
         dashboardHeading:
         "நோயாளி டாஷ்போர்டு",
 
@@ -1740,7 +1861,6 @@ const text = {
 
         logoutButton:
         "வெளியேறு",
-
 
         symptomHeading:
         "அறிகுறி மதிப்பீடு",
@@ -1802,13 +1922,11 @@ const text = {
         checkButton:
         "அவசர நிலையை சரிபார்க்கவும்",
 
-
         historyHeading:
         "எனது உடல்நல வரலாறு",
 
         historyBackButton:
         "பின்செல்",
-
 
         doctorLoginHeading:
         "PHC பணியாளர் உள்நுழைவு",
@@ -1831,7 +1949,6 @@ const text = {
         doctorLoginButton:
         "உள்நுழைக",
 
-
         doctorDashboardHeading:
         "PHC பணியாளர் டாஷ்போர்டு",
 
@@ -1853,10 +1970,8 @@ const text = {
         doctorLogoutButton:
         "வெளியேறு",
 
-
         footer:
         "PHC சுகாதார உதவி | Hack Nova",
-
 
         registerError:
         "உங்கள் பெயர், வயது மற்றும் சரியான 4 இலக்க PIN-ஐ உள்ளிடுங்கள்.",
@@ -1868,86 +1983,72 @@ const text = {
         "பயனர் பெயர் அல்லது கடவுச்சொல் தவறாக உள்ளது.",
 
         symptomsRequired:
-        "உங்கள் அறிகுறிகளை உள்ளிடுங்கள்.",
+        "உங்கள் அறிகுறிகளை உள்ளிடவும்.",
 
         voiceNotSupported:
-        "இந்த உலாவியில் குரல் உள்ளீடு ஆதரிக்கப்படவில்லை.",
+        "இந்த browser voice input-ஐ ஆதரிக்கவில்லை.",
 
         noHistory:
-        "உடல்நல மதிப்பீட்டு வரலாறு எதுவும் இல்லை.",
+        "உடல்நல மதிப்பீட்டு வரலாறு இல்லை.",
 
         noCases:
-        "நோயாளி வழக்குகள் எதுவும் இல்லை.",
-
+        "நோயாளி வழக்குகள் இல்லை.",
 
         emergency:
-        "அவசர நிலை",
+        "அவசரம்",
 
         urgent:
         "விரைவான கவனம்",
 
         routine:
-        "வழக்கமான கவனம்",
-
+        "சாதாரணம்",
 
         emergencyMessage:
-        "உடனடியாக சுகாதார நிபுணரின் கவனத்தைப் பெறுங்கள்.",
+        "உடனடியாக சுகாதார நிபுணரை அணுகவும்.",
 
         urgentMessage:
-        "PHC-க்கு சென்று விரைவில் சுகாதார நிபுணரிடம் மதிப்பீடு பெறுங்கள்.",
+        "விரைவில் PHC-க்கு சென்று சுகாதார நிபுணரிடம் பரிசோதனை செய்து கொள்ளுங்கள்.",
 
         routineMessage:
-        "உங்கள் அறிகுறிகளை கண்காணிக்கவும். அவை தொடர்ந்தால் அல்லது மோசமடைந்தால் சுகாதார நிபுணரை அணுகவும்.",
+        "அறிகுறிகளை கவனித்து, அவை தொடர்ந்தால் அல்லது மோசமடைந்தால் சுகாதார நிபுணரை அணுகவும்.",
 
         finalNote:
-        "இது ஆரம்ப நிலை மதிப்பீடு மட்டுமே. இறுதி மருத்துவ முடிவை சுகாதார நிபுணர் எடுக்க வேண்டும்."
+        "இது ஒரு ஆரம்ப நிலை முன்னுரிமை மதிப்பீடு மட்டுமே. இறுதி மருத்துவ முடிவை சுகாதார நிபுணர் எடுக்க வேண்டும்."
 
     }
 
 };
 
 
-
 /* =====================================================
    PAGE NAVIGATION
 ===================================================== */
 
-function showPage(page) {
+function showPage(pageId) {
 
     document
         .querySelectorAll(".page")
-        .forEach(function(pageElement) {
+        .forEach(function(page) {
 
-            pageElement.classList.add("hidden");
+            page.classList.add("hidden");
 
         });
 
 
-    const selected =
-        document.getElementById(page);
-
-    if (selected) {
-
-        selected.classList.remove("hidden");
-
-    }
+    const page =
+        document.getElementById(pageId);
 
 
-    if (page === "history") {
+    if (page) {
 
-        showHistory();
+        page.classList.remove("hidden");
 
     }
 
 
-    if (page === "doctorDashboard") {
-
-        updateDoctorDashboard();
-
-    }
+    window.scrollTo(0,0);
 
 }
-
 
 
 /* =====================================================
@@ -1961,12 +2062,6 @@ function changeLanguage(lang) {
     const t = text[lang];
 
 
-    document.documentElement.lang =
-        lang === "ta" ? "ta" : "en";
-
-
-    /* HEADER */
-
     document.getElementById("title").innerText =
         t.title;
 
@@ -1979,8 +2074,6 @@ function changeLanguage(lang) {
     document.getElementById("registerNav").innerText =
         t.registerNav;
 
-
-    /* HOME */
 
     document.getElementById("homeHeading").innerText =
         t.homeHeading;
@@ -2000,8 +2093,9 @@ function changeLanguage(lang) {
     document.getElementById("loginHomeBtn").innerText =
         t.loginHomeBtn;
 
+    document.getElementById("sosButton").innerText =
+        t.sosButton;
 
-    /* REGISTER */
 
     document.getElementById("registerHeading").innerText =
         t.registerHeading;
@@ -2040,8 +2134,6 @@ function changeLanguage(lang) {
         t.alreadyButton;
 
 
-    /* SUCCESS */
-
     document.getElementById("successHeading").innerText =
         t.successHeading;
 
@@ -2057,8 +2149,6 @@ function changeLanguage(lang) {
     document.getElementById("goLoginButton").innerText =
         t.goLoginButton;
 
-
-    /* LOGIN */
 
     document.getElementById("loginHeading").innerText =
         t.loginHeading;
@@ -2085,8 +2175,6 @@ function changeLanguage(lang) {
         t.createAccountButton;
 
 
-    /* DASHBOARD */
-
     document.getElementById("dashboardHeading").innerText =
         t.dashboardHeading;
 
@@ -2105,8 +2193,6 @@ function changeLanguage(lang) {
     document.getElementById("logoutButton").innerText =
         t.logoutButton;
 
-
-    /* SYMPTOMS */
 
     document.getElementById("symptomHeading").innerText =
         t.symptomHeading;
@@ -2166,16 +2252,12 @@ function changeLanguage(lang) {
         t.checkButton;
 
 
-    /* HISTORY */
-
     document.getElementById("historyHeading").innerText =
         t.historyHeading;
 
     document.getElementById("historyBackButton").innerText =
         t.historyBackButton;
 
-
-    /* DOCTOR LOGIN */
 
     document.getElementById("doctorLoginHeading").innerText =
         t.doctorLoginHeading;
@@ -2199,8 +2281,6 @@ function changeLanguage(lang) {
         t.doctorLoginButton;
 
 
-    /* DOCTOR DASHBOARD */
-
     document.getElementById("doctorDashboardHeading").innerText =
         t.doctorDashboardHeading;
 
@@ -2222,50 +2302,203 @@ function changeLanguage(lang) {
     document.getElementById("doctorLogoutButton").innerText =
         t.doctorLogoutButton;
 
-
-    /* FOOTER */
-
     document.getElementById("footer").innerText =
         t.footer;
 
 
-    /* LANGUAGE BUTTON */
-
     document.getElementById("englishBtn")
-        .classList.toggle("active", lang === "en");
+        .classList.toggle(
+            "active",
+            lang === "en"
+        );
 
     document.getElementById("tamilBtn")
-        .classList.toggle("active", lang === "ta");
-
-
-    /* UPDATE HISTORY */
-
-    showHistory();
+        .classList.toggle(
+            "active",
+            lang === "ta"
+        );
 
 }
 
 
+/* =====================================================
+   🚨 FRONT PAGE SOS VOICE
+===================================================== */
+
+function sosEmergency() {
+
+    const englishMessage =
+        "SOS Emergency Alert. Please contact a healthcare professional immediately.";
+
+
+    const tamilMessage =
+        "அவசர SOS எச்சரிக்கை. உடனடியாக சுகாதார நிபுணரை அணுகவும்.";
+
+
+    const status =
+        document.getElementById("sosStatus");
+
+
+    /*
+       If speech synthesis is not supported
+    */
+
+    if (!("speechSynthesis" in window)) {
+
+        alert(
+            englishMessage +
+            "\n\n" +
+            tamilMessage
+        );
+
+        return;
+
+    }
+
+
+    /*
+       Stop previous voice
+    */
+
+    window.speechSynthesis.cancel();
+
+
+    /*
+       Show status
+    */
+
+    status.innerHTML = `
+
+        <div class="sos-message">
+
+            🚨 SOS Emergency Alert
+
+            <br><br>
+
+            Voice alert started...
+
+        </div>
+
+    `;
+
+
+    /*
+       ENGLISH
+    */
+
+    const englishSpeech =
+        new SpeechSynthesisUtterance(
+            englishMessage
+        );
+
+
+    englishSpeech.lang =
+        "en-IN";
+
+
+    englishSpeech.rate =
+        0.8;
+
+
+    englishSpeech.pitch =
+        1.1;
+
+
+    /*
+       After English,
+       speak Tamil
+    */
+
+    englishSpeech.onend =
+        function() {
+
+
+            const tamilSpeech =
+                new SpeechSynthesisUtterance(
+                    tamilMessage
+                );
+
+
+            tamilSpeech.lang =
+                "ta-IN";
+
+
+            tamilSpeech.rate =
+                0.8;
+
+
+            tamilSpeech.pitch =
+                1.1;
+
+
+            tamilSpeech.onend =
+                function() {
+
+                    status.innerHTML = `
+
+                        <div class="sos-message">
+
+                            🚨 SOS Alert Completed
+
+                        </div>
+
+                    `;
+
+                };
+
+
+            window
+                .speechSynthesis
+                .speak(
+                    tamilSpeech
+                );
+
+        };
+
+
+    /*
+       Start English voice
+    */
+
+    window
+        .speechSynthesis
+        .speak(
+            englishSpeech
+        );
+
+}
+
 
 /* =====================================================
-   PATIENT REGISTRATION
+   REGISTER
 ===================================================== */
 
 function registerPatient() {
 
     const name =
-        document.getElementById("name").value.trim();
+        document.getElementById("name")
+        .value
+        .trim();
+
 
     const age =
-        document.getElementById("age").value;
+        document.getElementById("age")
+        .value;
+
 
     const mobile =
-        document.getElementById("mobile").value.trim();
+        document.getElementById("mobile")
+        .value
+        .trim();
+
 
     const pin =
-        document.getElementById("pin").value;
+        document.getElementById("pin")
+        .value;
 
 
-    const t = text[language];
+    const t =
+        text[language];
 
 
     if (
@@ -2294,7 +2527,8 @@ function registerPatient() {
 
 
     const patientId =
-        "PHC-" + (1001 + patients.length);
+        "PHC-" +
+        (1001 + patients.length);
 
 
     const patient = {
@@ -2323,15 +2557,14 @@ function registerPatient() {
 
     document.getElementById(
         "patientId"
-    ).innerText = patientId;
+    ).innerText =
+        patientId;
 
 
     document.getElementById(
         "registerMessage"
     ).innerHTML = "";
 
-
-    /* Clear form */
 
     document.getElementById("name").value = "";
 
@@ -2347,9 +2580,8 @@ function registerPatient() {
 }
 
 
-
 /* =====================================================
-   PATIENT LOGIN
+   LOGIN
 ===================================================== */
 
 function loginPatient() {
@@ -2358,6 +2590,7 @@ function loginPatient() {
         document.getElementById("loginId")
         .value
         .trim();
+
 
     const pin =
         document.getElementById("loginPin")
@@ -2383,7 +2616,8 @@ function loginPatient() {
         );
 
 
-    const t = text[language];
+    const t =
+        text[language];
 
 
     if (!patient) {
@@ -2409,17 +2643,20 @@ function loginPatient() {
 
     document.getElementById(
         "loggedName"
-    ).innerText = patient.name;
+    ).innerText =
+        patient.name;
 
 
     document.getElementById(
         "loggedId"
-    ).innerText = patient.id;
+    ).innerText =
+        patient.id;
 
 
     document.getElementById(
         "loginId"
     ).value = "";
+
 
     document.getElementById(
         "loginPin"
@@ -2436,7 +2673,6 @@ function loginPatient() {
 }
 
 
-
 /* =====================================================
    START ASSESSMENT
 ===================================================== */
@@ -2448,7 +2684,6 @@ function startAssessment() {
 }
 
 
-
 /* =====================================================
    TRIAGE
 ===================================================== */
@@ -2458,13 +2693,6 @@ function calculatePriority(
     duration,
     warning
 ) {
-
-    /*
-       Prototype rule only.
-       Real clinical rules require
-       qualified clinical review.
-    */
-
 
     if (warning === "yes") {
 
@@ -2498,7 +2726,6 @@ function calculatePriority(
 }
 
 
-
 /* =====================================================
    CHECK SYMPTOMS
 ===================================================== */
@@ -2529,7 +2756,8 @@ function checkSymptoms() {
         ).value;
 
 
-    const t = text[language];
+    const t =
+        text[language];
 
 
     if (!symptom) {
@@ -2555,17 +2783,21 @@ function checkSymptoms() {
         );
 
 
-    let message = "";
+    let message;
 
 
-    if (priority === "Emergency") {
+    if (
+        priority === "Emergency"
+    ) {
 
         message =
             t.emergencyMessage;
 
     }
 
-    else if (priority === "Urgent") {
+    else if (
+        priority === "Urgent"
+    ) {
 
         message =
             t.urgentMessage;
@@ -2583,13 +2815,17 @@ function checkSymptoms() {
     let cssClass;
 
 
-    if (priority === "Emergency") {
+    if (
+        priority === "Emergency"
+    ) {
 
         cssClass = "error";
 
     }
 
-    else if (priority === "Urgent") {
+    else if (
+        priority === "Urgent"
+    ) {
 
         cssClass = "warning";
 
@@ -2614,13 +2850,13 @@ function checkSymptoms() {
 
         patientId:
             currentPatient
-                ? currentPatient.id
-                : "Unknown",
+            ? currentPatient.id
+            : "Unknown",
 
         patientName:
             currentPatient
-                ? currentPatient.name
-                : "Unknown",
+            ? currentPatient.name
+            : "Unknown",
 
         symptoms:
             symptom,
@@ -2667,44 +2903,76 @@ function checkSymptoms() {
         <div class="${cssClass}">
 
             <h3>
+
                 ${t[priority.toLowerCase()]}
+
             </h3>
 
-            <p>
-                ${message}
-            </p>
 
             <p>
+
+                ${message}
+
+            </p>
+
+
+            <p>
+
                 <strong>
+
                     ${t.finalNote}
+
                 </strong>
+
             </p>
 
         </div>
 
     `;
 
+
+    /*
+       If emergency result,
+       also speak SOS alert.
+    */
+
+    if (
+        priority === "Emergency"
+    ) {
+
+        sosEmergency();
+
+    }
+
 }
 
 
-
 /* =====================================================
-   VOICE OVER
+   READ QUESTION
 ===================================================== */
 
 function readQuestion() {
 
-    /*
-       Stop any previous speech
-    */
+    if (
+        !("speechSynthesis" in window)
+    ) {
 
-    window.speechSynthesis.cancel();
+        return;
+
+    }
+
+
+    window
+        .speechSynthesis
+        .cancel();
 
 
     let message;
 
 
-    if (language === "ta") {
+    if (
+        language === "ta"
+    ) {
 
         message =
             "உங்களுக்கு என்ன அறிகுறிகள் உள்ளன? உங்கள் அறிகுறிகளை சொல்லுங்கள்.";
@@ -2725,16 +2993,10 @@ function readQuestion() {
         );
 
 
-    /*
-       Tamil voice
-       or
-       Indian English voice
-    */
-
     speech.lang =
         language === "ta"
-            ? "ta-IN"
-            : "en-IN";
+        ? "ta-IN"
+        : "en-IN";
 
 
     speech.rate = 0.8;
@@ -2742,12 +3004,13 @@ function readQuestion() {
     speech.pitch = 1;
 
 
-    window.speechSynthesis.speak(
-        speech
-    );
+    window
+        .speechSynthesis
+        .speak(
+            speech
+        );
 
 }
-
 
 
 /* =====================================================
@@ -2761,12 +3024,9 @@ function startVoiceInput() {
         window.webkitSpeechRecognition;
 
 
-    const t = text[language];
+    const t =
+        text[language];
 
-
-    /*
-       Browser support check
-    */
 
     if (!SpeechRecognition) {
 
@@ -2783,15 +3043,10 @@ function startVoiceInput() {
         new SpeechRecognition();
 
 
-    /*
-       Automatically change
-       speech language.
-    */
-
     recognition.lang =
         language === "ta"
-            ? "ta-IN"
-            : "en-IN";
+        ? "ta-IN"
+        : "en-IN";
 
 
     recognition.continuous =
@@ -2815,19 +3070,13 @@ function startVoiceInput() {
     recognition.start();
 
 
-
-    /*
-       When speech is converted
-       to text
-    */
-
     recognition.onresult =
         function(event) {
 
             const spokenText =
                 event
-                    .results[0][0]
-                    .transcript;
+                .results[0][0]
+                .transcript;
 
 
             document.getElementById(
@@ -2842,11 +3091,6 @@ function startVoiceInput() {
         };
 
 
-
-    /*
-       Error
-    */
-
     recognition.onerror =
         function() {
 
@@ -2855,11 +3099,6 @@ function startVoiceInput() {
 
         };
 
-
-
-    /*
-       Recognition finished
-    */
 
     recognition.onend =
         function() {
@@ -2870,7 +3109,6 @@ function startVoiceInput() {
         };
 
 }
-
 
 
 /* =====================================================
@@ -2885,9 +3123,6 @@ function showHistory() {
         );
 
 
-    if (!list) return;
-
-
     const patient =
         JSON.parse(
             localStorage.getItem(
@@ -2897,8 +3132,6 @@ function showHistory() {
 
 
     if (!patient) {
-
-        list.innerHTML = "";
 
         return;
 
@@ -2926,7 +3159,9 @@ function showHistory() {
         );
 
 
-    if (patientCases.length === 0) {
+    if (
+        patientCases.length === 0
+    ) {
 
         list.innerHTML =
 
@@ -2934,45 +3169,64 @@ function showHistory() {
                 ${text[language].noHistory}
              </p>`;
 
+        showPage("history");
+
         return;
 
     }
 
 
     list.innerHTML =
+
         patientCases
         .map(
-            function(c, index) {
+            function(c,index) {
 
                 return `
 
                     <div class="case">
 
                         <h3>
+
                             ${index + 1}.
                             ${text[language][
                                 c.priority.toLowerCase()
                             ]}
+
                         </h3>
 
+
                         <p>
+
                             <strong>
-                                ${language === "ta"
+
+                                ${
+                                    language === "ta"
                                     ? "அறிகுறிகள்:"
-                                    : "Symptoms:"}
+                                    : "Symptoms:"
+                                }
+
                             </strong>
 
                             ${c.symptoms}
+
                         </p>
 
+
                         <p>
+
                             <strong>
-                                ${language === "ta"
+
+                                ${
+                                    language === "ta"
                                     ? "தேதி:"
-                                    : "Date:"}
+                                    : "Date:"
+                                }
+
                             </strong>
 
                             ${c.date}
+
                         </p>
 
                     </div>
@@ -2983,8 +3237,10 @@ function showHistory() {
         )
         .join("");
 
-}
 
+    showPage("history");
+
+}
 
 
 /* =====================================================
@@ -3009,10 +3265,6 @@ function doctorLogin() {
         text[language];
 
 
-    /*
-       Demo credentials
-    */
-
     if (
         username === "doctor" &&
         password === "1234"
@@ -3027,6 +3279,9 @@ function doctorLogin() {
         document.getElementById(
             "doctorMessage"
         ).innerHTML = "";
+
+
+        updateDoctorDashboard();
 
 
         showPage(
@@ -3048,7 +3303,6 @@ function doctorLogin() {
     }
 
 }
-
 
 
 /* =====================================================
@@ -3105,17 +3359,20 @@ function updateDoctorDashboard() {
 
     document.getElementById(
         "emergencyCount"
-    ).innerText = emergency;
+    ).innerText =
+        emergency;
 
 
     document.getElementById(
         "urgentCount"
-    ).innerText = urgent;
+    ).innerText =
+        urgent;
 
 
     document.getElementById(
         "routineCount"
-    ).innerText = routine;
+    ).innerText =
+        routine;
 
 
     const list =
@@ -3124,7 +3381,9 @@ function updateDoctorDashboard() {
         );
 
 
-    if (cases.length === 0) {
+    if (
+        cases.length === 0
+    ) {
 
         list.innerHTML =
 
@@ -3138,47 +3397,64 @@ function updateDoctorDashboard() {
 
 
     list.innerHTML =
+
         cases
         .map(
-            function(c, index) {
+            function(c,index) {
 
                 return `
 
                     <div class="case">
 
                         <h3>
+
                             ${index + 1}.
                             ${c.patientName}
+
                         </h3>
 
+
                         <p>
+
                             <strong>
                                 Patient ID:
                             </strong>
 
                             ${c.patientId}
+
                         </p>
 
+
                         <p>
+
                             <strong>
                                 Symptoms:
                             </strong>
 
                             ${c.symptoms}
+
                         </p>
 
+
                         <p>
+
                             <strong>
                                 Priority:
                             </strong>
 
                             ${c.priority}
+
                         </p>
 
+
                         <p>
+
                             <small>
+
                                 ${c.date}
+
                             </small>
+
                         </p>
 
                     </div>
@@ -3192,7 +3468,6 @@ function updateDoctorDashboard() {
 }
 
 
-
 /* =====================================================
    LOGOUT
 ===================================================== */
@@ -3203,6 +3478,7 @@ function logout() {
         "currentPatient"
     );
 
+
     localStorage.removeItem(
         "doctorLoggedIn"
     );
@@ -3211,29 +3487,6 @@ function logout() {
     showPage("home");
 
 }
-
-
-
-/* =====================================================
-   NAVIGATION TO DOCTOR LOGIN
-===================================================== */
-
-document.getElementById(
-    "loginNav"
-).addEventListener(
-    "contextmenu",
-    function(event) {
-
-        event.preventDefault();
-
-    }
-);
-
-
-/*
-   Double click on Login button
-   opens normal patient login.
-*/
 
 
 /* =====================================================
@@ -3246,5 +3499,7 @@ showPage("home");
 
 </script>
 
+
 </body>
+
 </html>

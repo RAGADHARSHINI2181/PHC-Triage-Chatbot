@@ -1,0 +1,3250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PHC Health Assistant</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f3f8fa;
+    color: #222;
+}
+
+/* HEADER */
+
+header {
+    background: #087f8c;
+    color: white;
+    padding: 18px 35px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h2 {
+    font-size: 23px;
+}
+
+nav button {
+    padding: 10px 18px;
+    margin-left: 7px;
+
+    border: none;
+    border-radius: 7px;
+
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* CONTAINER */
+
+.container {
+    max-width: 850px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.card {
+    background: white;
+    padding: 35px;
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 4px 15px rgba(0,0,0,0.08);
+}
+
+h1,
+h2 {
+    color: #087f8c;
+    margin-bottom: 18px;
+}
+
+h3 {
+    margin-bottom: 12px;
+}
+
+p {
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+/* FORM */
+
+label {
+    display: block;
+
+    font-weight: bold;
+
+    margin-top: 16px;
+    margin-bottom: 7px;
+}
+
+input,
+select,
+textarea {
+
+    width: 100%;
+
+    padding: 13px;
+
+    border: 1px solid #bbb;
+
+    border-radius: 7px;
+
+    font-size: 16px;
+}
+
+textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+/* BUTTON */
+
+.btn {
+
+    background: #087f8c;
+
+    color: white;
+
+    border: none;
+
+    padding: 13px 22px;
+
+    border-radius: 7px;
+
+    cursor: pointer;
+
+    font-size: 16px;
+
+    margin-top: 18px;
+}
+
+.btn:hover {
+    background: #056b76;
+}
+
+.secondary {
+    background: #666;
+}
+
+.secondary:hover {
+    background: #444;
+}
+
+/* HOME BUTTONS */
+
+.home-buttons {
+
+    display: flex;
+
+    gap: 15px;
+
+    flex-wrap: wrap;
+
+    margin-top: 10px;
+}
+
+.home-buttons .btn {
+    min-width: 180px;
+}
+
+/* LANGUAGE */
+
+.language {
+
+    margin-bottom: 25px;
+
+    display: flex;
+
+    gap: 8px;
+}
+
+.language button {
+
+    padding: 9px 18px;
+
+    border: 1px solid #087f8c;
+
+    background: white;
+
+    color: #087f8c;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+}
+
+.language button.active {
+
+    background: #087f8c;
+
+    color: white;
+}
+
+/* HIDDEN */
+
+.hidden {
+    display: none;
+}
+
+/* MESSAGES */
+
+.success {
+
+    background: #e5f7e9;
+
+    border-left: 5px solid #28a745;
+
+    padding: 18px;
+
+    margin-top: 20px;
+}
+
+.error {
+
+    background: #ffe5e5;
+
+    border-left: 5px solid #dc3545;
+
+    padding: 15px;
+
+    margin-top: 20px;
+}
+
+.warning {
+
+    background: #fff4d6;
+
+    border-left: 5px solid #ffc107;
+
+    padding: 15px;
+
+    margin-top: 20px;
+}
+
+/* DASHBOARD */
+
+.dashboard {
+    text-align: center;
+}
+
+.dashboard-box {
+
+    background: #eef8fa;
+
+    padding: 25px;
+
+    border-radius: 10px;
+
+    margin: 20px 0;
+}
+
+/* DOCTOR STATS */
+
+.stats {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 15px;
+
+    margin: 20px 0;
+}
+
+.stat {
+
+    background: white;
+
+    padding: 20px;
+
+    border-radius: 10px;
+
+    text-align: center;
+
+    box-shadow:
+        0 3px 10px rgba(0,0,0,0.06);
+}
+
+.stat-number {
+
+    font-size: 30px;
+
+    font-weight: bold;
+
+    color: #087f8c;
+}
+
+/* CASE */
+
+.case {
+
+    border: 1px solid #ddd;
+
+    padding: 15px;
+
+    margin-top: 12px;
+
+    border-radius: 8px;
+}
+
+/* VOICE */
+
+.voice-buttons {
+
+    display: flex;
+
+    gap: 10px;
+
+    flex-wrap: wrap;
+}
+
+/* FOOTER */
+
+footer {
+
+    text-align: center;
+
+    padding: 25px;
+
+    color: #666;
+}
+
+/* MOBILE */
+
+@media(max-width: 650px) {
+
+    header {
+
+        flex-direction: column;
+
+        gap: 15px;
+    }
+
+    nav button {
+
+        margin: 3px;
+    }
+
+    .home-buttons {
+
+        flex-direction: column;
+    }
+
+    .home-buttons .btn {
+
+        width: 100%;
+    }
+
+    .stats {
+
+        grid-template-columns: 1fr;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header>
+
+    <h2 id="title">
+        PHC Health Assistant
+    </h2>
+
+    <nav>
+
+        <button
+            onclick="showPage('home')"
+            id="homeNav">
+            Home
+        </button>
+
+        <button
+            onclick="showPage('login')"
+            id="loginNav">
+            Login
+        </button>
+
+        <button
+            onclick="showPage('register')"
+            id="registerNav">
+            Register
+        </button>
+
+    </nav>
+
+</header>
+
+
+
+<!-- =====================================================
+     HOME
+===================================================== -->
+
+<div
+    id="home"
+    class="container page">
+
+    <div class="card">
+
+        <!-- LANGUAGE -->
+
+        <div class="language">
+
+            <button
+                id="englishBtn"
+                class="active"
+                onclick="changeLanguage('en')">
+
+                English
+
+            </button>
+
+            <button
+                id="tamilBtn"
+                onclick="changeLanguage('ta')">
+
+                தமிழ்
+
+            </button>
+
+        </div>
+
+
+        <h1 id="homeHeading">
+
+            Welcome to PHC Health Assistant
+
+        </h1>
+
+
+        <p id="homeText">
+
+            This assistant helps patients provide their
+            symptoms and understand the urgency of
+            getting medical attention.
+
+        </p>
+
+
+        <div class="warning">
+
+            <strong id="important">
+
+                Important:
+
+            </strong>
+
+            <span id="importantText">
+
+                This system does not diagnose diseases.
+                The final decision must be made by a
+                healthcare professional.
+
+            </span>
+
+        </div>
+
+
+        <div class="home-buttons">
+
+            <button
+                class="btn"
+                onclick="showPage('register')"
+                id="registerHomeBtn">
+
+                Register
+
+            </button>
+
+
+            <button
+                class="btn secondary"
+                onclick="showPage('login')"
+                id="loginHomeBtn">
+
+                Login
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     REGISTER
+===================================================== -->
+
+<div
+    id="register"
+    class="container page hidden">
+
+    <div class="card">
+
+        <div class="language">
+
+            <button
+                onclick="changeLanguage('en')">
+
+                English
+
+            </button>
+
+            <button
+                onclick="changeLanguage('ta')">
+
+                தமிழ்
+
+            </button>
+
+        </div>
+
+
+        <h2 id="registerHeading">
+
+            Patient Registration
+
+        </h2>
+
+
+        <p id="registerText">
+
+            Create your patient account using simple details.
+
+        </p>
+
+
+        <label id="nameLabel">
+
+            👤 Name
+
+        </label>
+
+        <input
+            type="text"
+            id="name"
+            placeholder="Enter your name">
+
+
+
+        <label id="ageLabel">
+
+            🎂 Age
+
+        </label>
+
+        <input
+            type="number"
+            id="age"
+            placeholder="Enter your age">
+
+
+
+        <label id="mobileLabel">
+
+            📱 Mobile Number (Optional)
+
+        </label>
+
+        <input
+            type="tel"
+            id="mobile"
+            placeholder="Enter mobile number">
+
+
+
+        <label id="pinLabel">
+
+            🔐 Create 4-digit PIN
+
+        </label>
+
+        <input
+            type="password"
+            id="pin"
+            maxlength="4"
+            inputmode="numeric"
+            placeholder="Enter 4-digit PIN">
+
+
+
+        <button
+            class="btn"
+            onclick="registerPatient()"
+            id="registerButton">
+
+            Register
+
+        </button>
+
+
+        <button
+            class="btn secondary"
+            onclick="showPage('login')"
+            id="alreadyButton">
+
+            Already registered? Login
+
+        </button>
+
+
+        <div id="registerMessage"></div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     REGISTRATION SUCCESS
+===================================================== -->
+
+<div
+    id="success"
+    class="container page hidden">
+
+    <div class="card">
+
+        <h2 id="successHeading">
+
+            Registration Successful
+
+        </h2>
+
+
+        <div class="success">
+
+            <p id="successText">
+
+                Your account has been created successfully.
+
+            </p>
+
+
+            <p>
+
+                <strong id="patientIdLabel">
+
+                    Your Patient ID:
+
+                </strong>
+
+                <strong id="patientId"></strong>
+
+            </p>
+
+
+            <p id="rememberText">
+
+                Please remember your Patient ID and PIN.
+
+            </p>
+
+        </div>
+
+
+        <button
+            class="btn"
+            onclick="showPage('login')"
+            id="goLoginButton">
+
+            Go to Login
+
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     LOGIN
+===================================================== -->
+
+<div
+    id="login"
+    class="container page hidden">
+
+    <div class="card">
+
+        <div class="language">
+
+            <button
+                onclick="changeLanguage('en')">
+
+                English
+
+            </button>
+
+            <button
+                onclick="changeLanguage('ta')">
+
+                தமிழ்
+
+            </button>
+
+        </div>
+
+
+        <h2 id="loginHeading">
+
+            Patient Login
+
+        </h2>
+
+
+        <p id="loginText">
+
+            Login using your Patient ID and 4-digit PIN.
+
+        </p>
+
+
+        <label id="loginIdLabel">
+
+            🆔 Patient ID
+
+        </label>
+
+        <input
+            type="text"
+            id="loginId"
+            placeholder="Example: PHC-1001">
+
+
+
+        <label id="loginPinLabel">
+
+            🔐 4-digit PIN
+
+        </label>
+
+        <input
+            type="password"
+            id="loginPin"
+            maxlength="4"
+            inputmode="numeric"
+            placeholder="Enter your PIN">
+
+
+
+        <button
+            class="btn"
+            onclick="loginPatient()"
+            id="loginButton">
+
+            Login
+
+        </button>
+
+
+        <button
+            class="btn secondary"
+            onclick="showPage('register')"
+            id="createAccountButton">
+
+            Create New Account
+
+        </button>
+
+
+        <div id="loginMessage"></div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     PATIENT DASHBOARD
+===================================================== -->
+
+<div
+    id="dashboard"
+    class="container page hidden">
+
+    <div class="card dashboard">
+
+
+        <h2 id="dashboardHeading">
+
+            Patient Dashboard
+
+        </h2>
+
+
+        <p>
+
+            <span id="welcomeText">
+
+                Welcome
+
+            </span>
+
+            <strong id="loggedName"></strong>
+
+        </p>
+
+
+        <div class="dashboard-box">
+
+            <h3 id="dashboardPatientId">
+
+                Patient ID
+
+            </h3>
+
+
+            <p>
+
+                <strong id="loggedId"></strong>
+
+            </p>
+
+        </div>
+
+
+        <button
+            class="btn"
+            onclick="startAssessment()"
+            id="assessmentButton">
+
+            Start Symptom Assessment
+
+        </button>
+
+
+        <button
+            class="btn secondary"
+            onclick="showHistory()"
+            id="historyButton">
+
+            My Health History
+
+        </button>
+
+
+        <button
+            class="btn secondary"
+            onclick="logout()"
+            id="logoutButton">
+
+            Logout
+
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     SYMPTOM ASSESSMENT
+===================================================== -->
+
+<div
+    id="symptoms"
+    class="container page hidden">
+
+    <div class="card">
+
+
+        <h2 id="symptomHeading">
+
+            Symptom Assessment
+
+        </h2>
+
+
+        <p id="symptomText">
+
+            Please tell us about your symptoms.
+
+        </p>
+
+
+
+        <label id="symptomLabel">
+
+            What symptoms are you experiencing?
+
+        </label>
+
+
+        <textarea
+            id="symptomInput"
+            placeholder="Example: fever, headache, cough">
+        </textarea>
+
+
+        <!-- VOICE BUTTONS -->
+
+        <div class="voice-buttons">
+
+            <button
+                class="btn secondary"
+                onclick="readQuestion()"
+                id="readQuestionButton">
+
+                🔊 Read Question
+
+            </button>
+
+
+            <button
+                class="btn secondary"
+                onclick="startVoiceInput()"
+                id="voiceInputButton">
+
+                🎤 Speak Symptoms
+
+            </button>
+
+        </div>
+
+
+
+        <label id="durationLabel">
+
+            How long have you had the symptoms?
+
+        </label>
+
+
+        <select id="duration">
+
+            <option
+                id="today"
+                value="today">
+
+                Today
+
+            </option>
+
+
+            <option
+                id="days"
+                value="days">
+
+                A few days
+
+            </option>
+
+
+            <option
+                id="week"
+                value="week">
+
+                About a week
+
+            </option>
+
+
+            <option
+                id="more"
+                value="more">
+
+                More than a week
+
+            </option>
+
+        </select>
+
+
+
+        <label id="severityLabel">
+
+            How severe are the symptoms?
+
+        </label>
+
+
+        <select id="severity">
+
+            <option
+                id="low"
+                value="low">
+
+                Low
+
+            </option>
+
+
+            <option
+                id="medium"
+                value="medium">
+
+                Medium
+
+            </option>
+
+
+            <option
+                id="high"
+                value="high">
+
+                High
+
+            </option>
+
+        </select>
+
+
+
+        <label id="warningLabel">
+
+            Are you experiencing any serious warning signs?
+
+        </label>
+
+
+        <select id="warning">
+
+            <option
+                id="warningNo"
+                value="no">
+
+                No
+
+            </option>
+
+
+            <option
+                id="warningYes"
+                value="yes">
+
+                Yes
+
+            </option>
+
+        </select>
+
+
+
+        <button
+            class="btn"
+            onclick="checkSymptoms()"
+            id="checkButton">
+
+            Check Urgency
+
+        </button>
+
+
+        <div id="result"></div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     HISTORY
+===================================================== -->
+
+<div
+    id="history"
+    class="container page hidden">
+
+    <div class="card">
+
+        <h2 id="historyHeading">
+
+            My Health History
+
+        </h2>
+
+
+        <div id="historyList"></div>
+
+
+        <button
+            class="btn secondary"
+            onclick="showPage('dashboard')"
+            id="historyBackButton">
+
+            Back
+
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     DOCTOR LOGIN
+===================================================== -->
+
+<div
+    id="doctorLogin"
+    class="container page hidden">
+
+    <div class="card">
+
+        <h2 id="doctorLoginHeading">
+
+            PHC Staff Login
+
+        </h2>
+
+
+        <p id="doctorDemo">
+
+            Demo Login: doctor / 1234
+
+        </p>
+
+
+        <label id="doctorUserLabel">
+
+            Username
+
+        </label>
+
+
+        <input
+            type="text"
+            id="doctorUser"
+            placeholder="Enter username">
+
+
+        <label id="doctorPassLabel">
+
+            Password
+
+        </label>
+
+
+        <input
+            type="password"
+            id="doctorPass"
+            placeholder="Enter password">
+
+
+        <button
+            class="btn"
+            onclick="doctorLogin()"
+            id="doctorLoginButton">
+
+            Login
+
+        </button>
+
+
+        <div id="doctorMessage"></div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     DOCTOR DASHBOARD
+===================================================== -->
+
+<div
+    id="doctorDashboard"
+    class="container page hidden">
+
+    <div class="card">
+
+        <h2 id="doctorDashboardHeading">
+
+            PHC Staff Dashboard
+
+        </h2>
+
+
+        <p id="doctorDashboardText">
+
+            View patient triage cases for clinical assessment.
+
+        </p>
+
+
+        <div class="stats">
+
+
+            <div class="stat">
+
+                <p id="emergencyText">
+
+                    Emergency
+
+                </p>
+
+                <div
+                    class="stat-number"
+                    id="emergencyCount">
+
+                    0
+
+                </div>
+
+            </div>
+
+
+            <div class="stat">
+
+                <p id="urgentText">
+
+                    Urgent
+
+                </p>
+
+                <div
+                    class="stat-number"
+                    id="urgentCount">
+
+                    0
+
+                </div>
+
+            </div>
+
+
+            <div class="stat">
+
+                <p id="routineText">
+
+                    Routine
+
+                </p>
+
+                <div
+                    class="stat-number"
+                    id="routineCount">
+
+                    0
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <h3 id="casesHeading">
+
+            Patient Cases
+
+        </h3>
+
+
+        <div id="casesList"></div>
+
+
+        <button
+            class="btn secondary"
+            onclick="logout()"
+            id="doctorLogoutButton">
+
+            Logout
+
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    <span id="footer">
+
+        PHC Health Assistant | Hack Nova
+
+    </span>
+
+</footer>
+
+
+
+<script>
+
+/* =====================================================
+   LANGUAGE
+===================================================== */
+
+let language = "en";
+
+
+const text = {
+
+
+    en: {
+
+        title:
+        "PHC Health Assistant",
+
+        homeNav:
+        "Home",
+
+        loginNav:
+        "Login",
+
+        registerNav:
+        "Register",
+
+
+        homeHeading:
+        "Welcome to PHC Health Assistant",
+
+        homeText:
+        "This assistant helps patients provide their symptoms and understand the urgency of getting medical attention.",
+
+        important:
+        "Important:",
+
+        importantText:
+        "This system does not diagnose diseases. The final decision must be made by a healthcare professional.",
+
+        registerHomeBtn:
+        "Register",
+
+        loginHomeBtn:
+        "Login",
+
+
+        registerHeading:
+        "Patient Registration",
+
+        registerText:
+        "Create your patient account using simple details.",
+
+        nameLabel:
+        "👤 Name",
+
+        namePlaceholder:
+        "Enter your name",
+
+        ageLabel:
+        "🎂 Age",
+
+        agePlaceholder:
+        "Enter your age",
+
+        mobileLabel:
+        "📱 Mobile Number (Optional)",
+
+        mobilePlaceholder:
+        "Enter mobile number",
+
+        pinLabel:
+        "🔐 Create 4-digit PIN",
+
+        pinPlaceholder:
+        "Enter 4-digit PIN",
+
+        registerButton:
+        "Register",
+
+        alreadyButton:
+        "Already registered? Login",
+
+
+        successHeading:
+        "Registration Successful",
+
+        successText:
+        "Your account has been created successfully.",
+
+        patientIdLabel:
+        "Your Patient ID:",
+
+        rememberText:
+        "Please remember your Patient ID and PIN.",
+
+        goLoginButton:
+        "Go to Login",
+
+
+        loginHeading:
+        "Patient Login",
+
+        loginText:
+        "Login using your Patient ID and 4-digit PIN.",
+
+        loginIdLabel:
+        "🆔 Patient ID",
+
+        loginIdPlaceholder:
+        "Example: PHC-1001",
+
+        loginPinLabel:
+        "🔐 4-digit PIN",
+
+        loginPinPlaceholder:
+        "Enter your PIN",
+
+        loginButton:
+        "Login",
+
+        createAccountButton:
+        "Create New Account",
+
+
+        dashboardHeading:
+        "Patient Dashboard",
+
+        welcomeText:
+        "Welcome",
+
+        dashboardPatientId:
+        "Patient ID",
+
+        assessmentButton:
+        "Start Symptom Assessment",
+
+        historyButton:
+        "My Health History",
+
+        logoutButton:
+        "Logout",
+
+
+        symptomHeading:
+        "Symptom Assessment",
+
+        symptomText:
+        "Please tell us about your symptoms.",
+
+        symptomLabel:
+        "What symptoms are you experiencing?",
+
+        symptomPlaceholder:
+        "Example: fever, headache, cough",
+
+        readQuestionButton:
+        "🔊 Read Question",
+
+        voiceInputButton:
+        "🎤 Speak Symptoms",
+
+        voiceListening:
+        "🎤 Listening...",
+
+        durationLabel:
+        "How long have you had the symptoms?",
+
+        today:
+        "Today",
+
+        days:
+        "A few days",
+
+        week:
+        "About a week",
+
+        more:
+        "More than a week",
+
+        severityLabel:
+        "How severe are the symptoms?",
+
+        low:
+        "Low",
+
+        medium:
+        "Medium",
+
+        high:
+        "High",
+
+        warningLabel:
+        "Are you experiencing any serious warning signs?",
+
+        warningNo:
+        "No",
+
+        warningYes:
+        "Yes",
+
+        checkButton:
+        "Check Urgency",
+
+
+        historyHeading:
+        "My Health History",
+
+        historyBackButton:
+        "Back",
+
+
+        doctorLoginHeading:
+        "PHC Staff Login",
+
+        doctorDemo:
+        "Demo Login: doctor / 1234",
+
+        doctorUserLabel:
+        "Username",
+
+        doctorUserPlaceholder:
+        "Enter username",
+
+        doctorPassLabel:
+        "Password",
+
+        doctorPassPlaceholder:
+        "Enter password",
+
+        doctorLoginButton:
+        "Login",
+
+
+        doctorDashboardHeading:
+        "PHC Staff Dashboard",
+
+        doctorDashboardText:
+        "View patient triage cases for clinical assessment.",
+
+        emergencyText:
+        "Emergency",
+
+        urgentText:
+        "Urgent",
+
+        routineText:
+        "Routine",
+
+        casesHeading:
+        "Patient Cases",
+
+        doctorLogoutButton:
+        "Logout",
+
+
+        footer:
+        "PHC Health Assistant | Hack Nova",
+
+
+        registerError:
+        "Please enter your name, age and a valid 4-digit PIN.",
+
+        loginError:
+        "Invalid Patient ID or PIN.",
+
+        doctorError:
+        "Invalid username or password.",
+
+        symptomsRequired:
+        "Please enter your symptoms.",
+
+        voiceNotSupported:
+        "Voice input is not supported in this browser.",
+
+        noHistory:
+        "No health assessment history found.",
+
+        noCases:
+        "No patient cases available.",
+
+
+        emergency:
+        "Emergency",
+
+        urgent:
+        "Urgent",
+
+        routine:
+        "Routine",
+
+
+        emergencyMessage:
+        "Please seek immediate attention from a healthcare professional.",
+
+        urgentMessage:
+        "Please visit the PHC and get assessed by a healthcare professional soon.",
+
+        routineMessage:
+        "Please monitor your symptoms and consult a healthcare professional if they continue or worsen.",
+
+        finalNote:
+        "This is only a preliminary triage result. A healthcare professional must make the final clinical decision."
+
+    },
+
+
+    /* =================================================
+       TAMIL
+    ================================================= */
+
+    ta: {
+
+        title:
+        "PHC சுகாதார உதவி",
+
+        homeNav:
+        "முகப்பு",
+
+        loginNav:
+        "உள்நுழைவு",
+
+        registerNav:
+        "பதிவு",
+
+
+        homeHeading:
+        "PHC சுகாதார உதவிக்கு வரவேற்கிறோம்",
+
+        homeText:
+        "உங்கள் அறிகுறிகளை பதிவு செய்து, மருத்துவ கவனம் எவ்வளவு அவசரம் என்பதை புரிந்துகொள்ள இந்த உதவி கருவி உதவுகிறது.",
+
+        important:
+        "முக்கியம்:",
+
+        importantText:
+        "இந்த அமைப்பு நோயைக் கண்டறியாது. இறுதி முடிவை சுகாதார நிபுணர் எடுப்பார்.",
+
+        registerHomeBtn:
+        "பதிவு செய்யுங்கள்",
+
+        loginHomeBtn:
+        "உள்நுழைக",
+
+
+        registerHeading:
+        "நோயாளி பதிவு",
+
+        registerText:
+        "எளிய தகவல்களை பயன்படுத்தி உங்கள் நோயாளி கணக்கை உருவாக்குங்கள்.",
+
+        nameLabel:
+        "👤 பெயர்",
+
+        namePlaceholder:
+        "உங்கள் பெயரை உள்ளிடுங்கள்",
+
+        ageLabel:
+        "🎂 வயது",
+
+        agePlaceholder:
+        "உங்கள் வயதை உள்ளிடுங்கள்",
+
+        mobileLabel:
+        "📱 மொபைல் எண் (விருப்பம்)",
+
+        mobilePlaceholder:
+        "மொபைல் எண்ணை உள்ளிடுங்கள்",
+
+        pinLabel:
+        "🔐 4 இலக்க PIN உருவாக்கவும்",
+
+        pinPlaceholder:
+        "4 இலக்க PIN உள்ளிடுங்கள்",
+
+        registerButton:
+        "பதிவு செய்யுங்கள்",
+
+        alreadyButton:
+        "ஏற்கனவே பதிவு செய்துள்ளீர்களா? உள்நுழைக",
+
+
+        successHeading:
+        "பதிவு வெற்றிகரமாக முடிந்தது",
+
+        successText:
+        "உங்கள் கணக்கு வெற்றிகரமாக உருவாக்கப்பட்டது.",
+
+        patientIdLabel:
+        "உங்கள் நோயாளி ID:",
+
+        rememberText:
+        "உங்கள் நோயாளி ID மற்றும் PIN-ஐ நினைவில் வைத்துக்கொள்ளுங்கள்.",
+
+        goLoginButton:
+        "உள்நுழைவுக்கு செல்லுங்கள்",
+
+
+        loginHeading:
+        "நோயாளி உள்நுழைவு",
+
+        loginText:
+        "உங்கள் நோயாளி ID மற்றும் 4 இலக்க PIN மூலம் உள்நுழையுங்கள்.",
+
+        loginIdLabel:
+        "🆔 நோயாளி ID",
+
+        loginIdPlaceholder:
+        "உதாரணம்: PHC-1001",
+
+        loginPinLabel:
+        "🔐 4 இலக்க PIN",
+
+        loginPinPlaceholder:
+        "உங்கள் PIN-ஐ உள்ளிடுங்கள்",
+
+        loginButton:
+        "உள்நுழைக",
+
+        createAccountButton:
+        "புதிய கணக்கை உருவாக்கவும்",
+
+
+        dashboardHeading:
+        "நோயாளி டாஷ்போர்டு",
+
+        welcomeText:
+        "வரவேற்கிறோம்",
+
+        dashboardPatientId:
+        "நோயாளி ID",
+
+        assessmentButton:
+        "அறிகுறி மதிப்பீட்டை தொடங்கவும்",
+
+        historyButton:
+        "எனது உடல்நல வரலாறு",
+
+        logoutButton:
+        "வெளியேறு",
+
+
+        symptomHeading:
+        "அறிகுறி மதிப்பீடு",
+
+        symptomText:
+        "உங்கள் அறிகுறிகளைப் பற்றி எங்களிடம் கூறுங்கள்.",
+
+        symptomLabel:
+        "உங்களுக்கு என்ன அறிகுறிகள் உள்ளன?",
+
+        symptomPlaceholder:
+        "உதாரணம்: காய்ச்சல், தலைவலி, இருமல்",
+
+        readQuestionButton:
+        "🔊 கேள்வியை கேட்க",
+
+        voiceInputButton:
+        "🎤 அறிகுறிகளை பேசுங்கள்",
+
+        voiceListening:
+        "🎤 கேட்டுக்கொண்டிருக்கிறது...",
+
+        durationLabel:
+        "இந்த அறிகுறிகள் எவ்வளவு நாட்களாக உள்ளன?",
+
+        today:
+        "இன்று",
+
+        days:
+        "சில நாட்கள்",
+
+        week:
+        "சுமார் ஒரு வாரம்",
+
+        more:
+        "ஒரு வாரத்திற்கும் மேல்",
+
+        severityLabel:
+        "அறிகுறிகள் எவ்வளவு தீவிரமாக உள்ளன?",
+
+        low:
+        "குறைவு",
+
+        medium:
+        "நடுத்தரம்",
+
+        high:
+        "அதிகம்",
+
+        warningLabel:
+        "தீவிரமான எச்சரிக்கை அறிகுறிகள் உள்ளதா?",
+
+        warningNo:
+        "இல்லை",
+
+        warningYes:
+        "ஆம்",
+
+        checkButton:
+        "அவசர நிலையை சரிபார்க்கவும்",
+
+
+        historyHeading:
+        "எனது உடல்நல வரலாறு",
+
+        historyBackButton:
+        "பின்செல்",
+
+
+        doctorLoginHeading:
+        "PHC பணியாளர் உள்நுழைவு",
+
+        doctorDemo:
+        "Demo Login: doctor / 1234",
+
+        doctorUserLabel:
+        "பயனர் பெயர்",
+
+        doctorUserPlaceholder:
+        "பயனர் பெயரை உள்ளிடுங்கள்",
+
+        doctorPassLabel:
+        "கடவுச்சொல்",
+
+        doctorPassPlaceholder:
+        "கடவுச்சொல்லை உள்ளிடுங்கள்",
+
+        doctorLoginButton:
+        "உள்நுழைக",
+
+
+        doctorDashboardHeading:
+        "PHC பணியாளர் டாஷ்போர்டு",
+
+        doctorDashboardText:
+        "மருத்துவ மதிப்பீட்டிற்கான நோயாளி வழக்குகளைப் பார்க்கவும்.",
+
+        emergencyText:
+        "அவசரம்",
+
+        urgentText:
+        "விரைவான கவனம்",
+
+        routineText:
+        "சாதாரணம்",
+
+        casesHeading:
+        "நோயாளி வழக்குகள்",
+
+        doctorLogoutButton:
+        "வெளியேறு",
+
+
+        footer:
+        "PHC சுகாதார உதவி | Hack Nova",
+
+
+        registerError:
+        "உங்கள் பெயர், வயது மற்றும் சரியான 4 இலக்க PIN-ஐ உள்ளிடுங்கள்.",
+
+        loginError:
+        "நோயாளி ID அல்லது PIN தவறாக உள்ளது.",
+
+        doctorError:
+        "பயனர் பெயர் அல்லது கடவுச்சொல் தவறாக உள்ளது.",
+
+        symptomsRequired:
+        "உங்கள் அறிகுறிகளை உள்ளிடுங்கள்.",
+
+        voiceNotSupported:
+        "இந்த உலாவியில் குரல் உள்ளீடு ஆதரிக்கப்படவில்லை.",
+
+        noHistory:
+        "உடல்நல மதிப்பீட்டு வரலாறு எதுவும் இல்லை.",
+
+        noCases:
+        "நோயாளி வழக்குகள் எதுவும் இல்லை.",
+
+
+        emergency:
+        "அவசர நிலை",
+
+        urgent:
+        "விரைவான கவனம்",
+
+        routine:
+        "வழக்கமான கவனம்",
+
+
+        emergencyMessage:
+        "உடனடியாக சுகாதார நிபுணரின் கவனத்தைப் பெறுங்கள்.",
+
+        urgentMessage:
+        "PHC-க்கு சென்று விரைவில் சுகாதார நிபுணரிடம் மதிப்பீடு பெறுங்கள்.",
+
+        routineMessage:
+        "உங்கள் அறிகுறிகளை கண்காணிக்கவும். அவை தொடர்ந்தால் அல்லது மோசமடைந்தால் சுகாதார நிபுணரை அணுகவும்.",
+
+        finalNote:
+        "இது ஆரம்ப நிலை மதிப்பீடு மட்டுமே. இறுதி மருத்துவ முடிவை சுகாதார நிபுணர் எடுக்க வேண்டும்."
+
+    }
+
+};
+
+
+
+/* =====================================================
+   PAGE NAVIGATION
+===================================================== */
+
+function showPage(page) {
+
+    document
+        .querySelectorAll(".page")
+        .forEach(function(pageElement) {
+
+            pageElement.classList.add("hidden");
+
+        });
+
+
+    const selected =
+        document.getElementById(page);
+
+    if (selected) {
+
+        selected.classList.remove("hidden");
+
+    }
+
+
+    if (page === "history") {
+
+        showHistory();
+
+    }
+
+
+    if (page === "doctorDashboard") {
+
+        updateDoctorDashboard();
+
+    }
+
+}
+
+
+
+/* =====================================================
+   LANGUAGE CHANGE
+===================================================== */
+
+function changeLanguage(lang) {
+
+    language = lang;
+
+    const t = text[lang];
+
+
+    document.documentElement.lang =
+        lang === "ta" ? "ta" : "en";
+
+
+    /* HEADER */
+
+    document.getElementById("title").innerText =
+        t.title;
+
+    document.getElementById("homeNav").innerText =
+        t.homeNav;
+
+    document.getElementById("loginNav").innerText =
+        t.loginNav;
+
+    document.getElementById("registerNav").innerText =
+        t.registerNav;
+
+
+    /* HOME */
+
+    document.getElementById("homeHeading").innerText =
+        t.homeHeading;
+
+    document.getElementById("homeText").innerText =
+        t.homeText;
+
+    document.getElementById("important").innerText =
+        t.important;
+
+    document.getElementById("importantText").innerText =
+        t.importantText;
+
+    document.getElementById("registerHomeBtn").innerText =
+        t.registerHomeBtn;
+
+    document.getElementById("loginHomeBtn").innerText =
+        t.loginHomeBtn;
+
+
+    /* REGISTER */
+
+    document.getElementById("registerHeading").innerText =
+        t.registerHeading;
+
+    document.getElementById("registerText").innerText =
+        t.registerText;
+
+    document.getElementById("nameLabel").innerText =
+        t.nameLabel;
+
+    document.getElementById("name").placeholder =
+        t.namePlaceholder;
+
+    document.getElementById("ageLabel").innerText =
+        t.ageLabel;
+
+    document.getElementById("age").placeholder =
+        t.agePlaceholder;
+
+    document.getElementById("mobileLabel").innerText =
+        t.mobileLabel;
+
+    document.getElementById("mobile").placeholder =
+        t.mobilePlaceholder;
+
+    document.getElementById("pinLabel").innerText =
+        t.pinLabel;
+
+    document.getElementById("pin").placeholder =
+        t.pinPlaceholder;
+
+    document.getElementById("registerButton").innerText =
+        t.registerButton;
+
+    document.getElementById("alreadyButton").innerText =
+        t.alreadyButton;
+
+
+    /* SUCCESS */
+
+    document.getElementById("successHeading").innerText =
+        t.successHeading;
+
+    document.getElementById("successText").innerText =
+        t.successText;
+
+    document.getElementById("patientIdLabel").innerText =
+        t.patientIdLabel;
+
+    document.getElementById("rememberText").innerText =
+        t.rememberText;
+
+    document.getElementById("goLoginButton").innerText =
+        t.goLoginButton;
+
+
+    /* LOGIN */
+
+    document.getElementById("loginHeading").innerText =
+        t.loginHeading;
+
+    document.getElementById("loginText").innerText =
+        t.loginText;
+
+    document.getElementById("loginIdLabel").innerText =
+        t.loginIdLabel;
+
+    document.getElementById("loginId").placeholder =
+        t.loginIdPlaceholder;
+
+    document.getElementById("loginPinLabel").innerText =
+        t.loginPinLabel;
+
+    document.getElementById("loginPin").placeholder =
+        t.loginPinPlaceholder;
+
+    document.getElementById("loginButton").innerText =
+        t.loginButton;
+
+    document.getElementById("createAccountButton").innerText =
+        t.createAccountButton;
+
+
+    /* DASHBOARD */
+
+    document.getElementById("dashboardHeading").innerText =
+        t.dashboardHeading;
+
+    document.getElementById("welcomeText").innerText =
+        t.welcomeText;
+
+    document.getElementById("dashboardPatientId").innerText =
+        t.dashboardPatientId;
+
+    document.getElementById("assessmentButton").innerText =
+        t.assessmentButton;
+
+    document.getElementById("historyButton").innerText =
+        t.historyButton;
+
+    document.getElementById("logoutButton").innerText =
+        t.logoutButton;
+
+
+    /* SYMPTOMS */
+
+    document.getElementById("symptomHeading").innerText =
+        t.symptomHeading;
+
+    document.getElementById("symptomText").innerText =
+        t.symptomText;
+
+    document.getElementById("symptomLabel").innerText =
+        t.symptomLabel;
+
+    document.getElementById("symptomInput").placeholder =
+        t.symptomPlaceholder;
+
+    document.getElementById("readQuestionButton").innerText =
+        t.readQuestionButton;
+
+    document.getElementById("voiceInputButton").innerText =
+        t.voiceInputButton;
+
+    document.getElementById("durationLabel").innerText =
+        t.durationLabel;
+
+    document.getElementById("today").innerText =
+        t.today;
+
+    document.getElementById("days").innerText =
+        t.days;
+
+    document.getElementById("week").innerText =
+        t.week;
+
+    document.getElementById("more").innerText =
+        t.more;
+
+    document.getElementById("severityLabel").innerText =
+        t.severityLabel;
+
+    document.getElementById("low").innerText =
+        t.low;
+
+    document.getElementById("medium").innerText =
+        t.medium;
+
+    document.getElementById("high").innerText =
+        t.high;
+
+    document.getElementById("warningLabel").innerText =
+        t.warningLabel;
+
+    document.getElementById("warningNo").innerText =
+        t.warningNo;
+
+    document.getElementById("warningYes").innerText =
+        t.warningYes;
+
+    document.getElementById("checkButton").innerText =
+        t.checkButton;
+
+
+    /* HISTORY */
+
+    document.getElementById("historyHeading").innerText =
+        t.historyHeading;
+
+    document.getElementById("historyBackButton").innerText =
+        t.historyBackButton;
+
+
+    /* DOCTOR LOGIN */
+
+    document.getElementById("doctorLoginHeading").innerText =
+        t.doctorLoginHeading;
+
+    document.getElementById("doctorDemo").innerText =
+        t.doctorDemo;
+
+    document.getElementById("doctorUserLabel").innerText =
+        t.doctorUserLabel;
+
+    document.getElementById("doctorUser").placeholder =
+        t.doctorUserPlaceholder;
+
+    document.getElementById("doctorPassLabel").innerText =
+        t.doctorPassLabel;
+
+    document.getElementById("doctorPass").placeholder =
+        t.doctorPassPlaceholder;
+
+    document.getElementById("doctorLoginButton").innerText =
+        t.doctorLoginButton;
+
+
+    /* DOCTOR DASHBOARD */
+
+    document.getElementById("doctorDashboardHeading").innerText =
+        t.doctorDashboardHeading;
+
+    document.getElementById("doctorDashboardText").innerText =
+        t.doctorDashboardText;
+
+    document.getElementById("emergencyText").innerText =
+        t.emergencyText;
+
+    document.getElementById("urgentText").innerText =
+        t.urgentText;
+
+    document.getElementById("routineText").innerText =
+        t.routineText;
+
+    document.getElementById("casesHeading").innerText =
+        t.casesHeading;
+
+    document.getElementById("doctorLogoutButton").innerText =
+        t.doctorLogoutButton;
+
+
+    /* FOOTER */
+
+    document.getElementById("footer").innerText =
+        t.footer;
+
+
+    /* LANGUAGE BUTTON */
+
+    document.getElementById("englishBtn")
+        .classList.toggle("active", lang === "en");
+
+    document.getElementById("tamilBtn")
+        .classList.toggle("active", lang === "ta");
+
+
+    /* UPDATE HISTORY */
+
+    showHistory();
+
+}
+
+
+
+/* =====================================================
+   PATIENT REGISTRATION
+===================================================== */
+
+function registerPatient() {
+
+    const name =
+        document.getElementById("name").value.trim();
+
+    const age =
+        document.getElementById("age").value;
+
+    const mobile =
+        document.getElementById("mobile").value.trim();
+
+    const pin =
+        document.getElementById("pin").value;
+
+
+    const t = text[language];
+
+
+    if (
+        !name ||
+        !age ||
+        !/^\d{4}$/.test(pin)
+    ) {
+
+        document.getElementById(
+            "registerMessage"
+        ).innerHTML =
+
+            `<div class="error">
+                ${t.registerError}
+             </div>`;
+
+        return;
+
+    }
+
+
+    let patients =
+        JSON.parse(
+            localStorage.getItem("patients")
+        ) || [];
+
+
+    const patientId =
+        "PHC-" + (1001 + patients.length);
+
+
+    const patient = {
+
+        id: patientId,
+
+        name: name,
+
+        age: age,
+
+        mobile: mobile,
+
+        pin: pin
+
+    };
+
+
+    patients.push(patient);
+
+
+    localStorage.setItem(
+        "patients",
+        JSON.stringify(patients)
+    );
+
+
+    document.getElementById(
+        "patientId"
+    ).innerText = patientId;
+
+
+    document.getElementById(
+        "registerMessage"
+    ).innerHTML = "";
+
+
+    /* Clear form */
+
+    document.getElementById("name").value = "";
+
+    document.getElementById("age").value = "";
+
+    document.getElementById("mobile").value = "";
+
+    document.getElementById("pin").value = "";
+
+
+    showPage("success");
+
+}
+
+
+
+/* =====================================================
+   PATIENT LOGIN
+===================================================== */
+
+function loginPatient() {
+
+    const id =
+        document.getElementById("loginId")
+        .value
+        .trim();
+
+    const pin =
+        document.getElementById("loginPin")
+        .value;
+
+
+    const patients =
+        JSON.parse(
+            localStorage.getItem("patients")
+        ) || [];
+
+
+    const patient =
+        patients.find(
+            function(p) {
+
+                return (
+                    p.id === id &&
+                    p.pin === pin
+                );
+
+            }
+        );
+
+
+    const t = text[language];
+
+
+    if (!patient) {
+
+        document.getElementById(
+            "loginMessage"
+        ).innerHTML =
+
+            `<div class="error">
+                ${t.loginError}
+             </div>`;
+
+        return;
+
+    }
+
+
+    localStorage.setItem(
+        "currentPatient",
+        JSON.stringify(patient)
+    );
+
+
+    document.getElementById(
+        "loggedName"
+    ).innerText = patient.name;
+
+
+    document.getElementById(
+        "loggedId"
+    ).innerText = patient.id;
+
+
+    document.getElementById(
+        "loginId"
+    ).value = "";
+
+    document.getElementById(
+        "loginPin"
+    ).value = "";
+
+
+    document.getElementById(
+        "loginMessage"
+    ).innerHTML = "";
+
+
+    showPage("dashboard");
+
+}
+
+
+
+/* =====================================================
+   START ASSESSMENT
+===================================================== */
+
+function startAssessment() {
+
+    showPage("symptoms");
+
+}
+
+
+
+/* =====================================================
+   TRIAGE
+===================================================== */
+
+function calculatePriority(
+    severity,
+    duration,
+    warning
+) {
+
+    /*
+       Prototype rule only.
+       Real clinical rules require
+       qualified clinical review.
+    */
+
+
+    if (warning === "yes") {
+
+        return "Emergency";
+
+    }
+
+
+    if (severity === "high") {
+
+        return "Urgent";
+
+    }
+
+
+    if (
+        severity === "medium" &&
+        (
+            duration === "week" ||
+            duration === "more"
+        )
+    ) {
+
+        return "Urgent";
+
+    }
+
+
+    return "Routine";
+
+}
+
+
+
+/* =====================================================
+   CHECK SYMPTOMS
+===================================================== */
+
+function checkSymptoms() {
+
+    const symptom =
+        document.getElementById(
+            "symptomInput"
+        ).value.trim();
+
+
+    const duration =
+        document.getElementById(
+            "duration"
+        ).value;
+
+
+    const severity =
+        document.getElementById(
+            "severity"
+        ).value;
+
+
+    const warning =
+        document.getElementById(
+            "warning"
+        ).value;
+
+
+    const t = text[language];
+
+
+    if (!symptom) {
+
+        document.getElementById(
+            "result"
+        ).innerHTML =
+
+            `<div class="warning">
+                ${t.symptomsRequired}
+             </div>`;
+
+        return;
+
+    }
+
+
+    const priority =
+        calculatePriority(
+            severity,
+            duration,
+            warning
+        );
+
+
+    let message = "";
+
+
+    if (priority === "Emergency") {
+
+        message =
+            t.emergencyMessage;
+
+    }
+
+    else if (priority === "Urgent") {
+
+        message =
+            t.urgentMessage;
+
+    }
+
+    else {
+
+        message =
+            t.routineMessage;
+
+    }
+
+
+    let cssClass;
+
+
+    if (priority === "Emergency") {
+
+        cssClass = "error";
+
+    }
+
+    else if (priority === "Urgent") {
+
+        cssClass = "warning";
+
+    }
+
+    else {
+
+        cssClass = "success";
+
+    }
+
+
+    const currentPatient =
+        JSON.parse(
+            localStorage.getItem(
+                "currentPatient"
+            )
+        );
+
+
+    const newCase = {
+
+        patientId:
+            currentPatient
+                ? currentPatient.id
+                : "Unknown",
+
+        patientName:
+            currentPatient
+                ? currentPatient.name
+                : "Unknown",
+
+        symptoms:
+            symptom,
+
+        duration:
+            duration,
+
+        severity:
+            severity,
+
+        warning:
+            warning,
+
+        priority:
+            priority,
+
+        date:
+            new Date().toLocaleString()
+
+    };
+
+
+    let cases =
+        JSON.parse(
+            localStorage.getItem(
+                "phcCases"
+            )
+        ) || [];
+
+
+    cases.push(newCase);
+
+
+    localStorage.setItem(
+        "phcCases",
+        JSON.stringify(cases)
+    );
+
+
+    document.getElementById(
+        "result"
+    ).innerHTML = `
+
+        <div class="${cssClass}">
+
+            <h3>
+                ${t[priority.toLowerCase()]}
+            </h3>
+
+            <p>
+                ${message}
+            </p>
+
+            <p>
+                <strong>
+                    ${t.finalNote}
+                </strong>
+            </p>
+
+        </div>
+
+    `;
+
+}
+
+
+
+/* =====================================================
+   VOICE OVER
+===================================================== */
+
+function readQuestion() {
+
+    /*
+       Stop any previous speech
+    */
+
+    window.speechSynthesis.cancel();
+
+
+    let message;
+
+
+    if (language === "ta") {
+
+        message =
+            "உங்களுக்கு என்ன அறிகுறிகள் உள்ளன? உங்கள் அறிகுறிகளை சொல்லுங்கள்.";
+
+    }
+
+    else {
+
+        message =
+            "What symptoms are you experiencing? Please tell us your symptoms.";
+
+    }
+
+
+    const speech =
+        new SpeechSynthesisUtterance(
+            message
+        );
+
+
+    /*
+       Tamil voice
+       or
+       Indian English voice
+    */
+
+    speech.lang =
+        language === "ta"
+            ? "ta-IN"
+            : "en-IN";
+
+
+    speech.rate = 0.8;
+
+    speech.pitch = 1;
+
+
+    window.speechSynthesis.speak(
+        speech
+    );
+
+}
+
+
+
+/* =====================================================
+   VOICE INPUT
+===================================================== */
+
+function startVoiceInput() {
+
+    const SpeechRecognition =
+        window.SpeechRecognition ||
+        window.webkitSpeechRecognition;
+
+
+    const t = text[language];
+
+
+    /*
+       Browser support check
+    */
+
+    if (!SpeechRecognition) {
+
+        alert(
+            t.voiceNotSupported
+        );
+
+        return;
+
+    }
+
+
+    const recognition =
+        new SpeechRecognition();
+
+
+    /*
+       Automatically change
+       speech language.
+    */
+
+    recognition.lang =
+        language === "ta"
+            ? "ta-IN"
+            : "en-IN";
+
+
+    recognition.continuous =
+        false;
+
+
+    recognition.interimResults =
+        false;
+
+
+    const button =
+        document.getElementById(
+            "voiceInputButton"
+        );
+
+
+    button.innerText =
+        t.voiceListening;
+
+
+    recognition.start();
+
+
+
+    /*
+       When speech is converted
+       to text
+    */
+
+    recognition.onresult =
+        function(event) {
+
+            const spokenText =
+                event
+                    .results[0][0]
+                    .transcript;
+
+
+            document.getElementById(
+                "symptomInput"
+            ).value =
+                spokenText;
+
+
+            button.innerText =
+                t.voiceInputButton;
+
+        };
+
+
+
+    /*
+       Error
+    */
+
+    recognition.onerror =
+        function() {
+
+            button.innerText =
+                t.voiceInputButton;
+
+        };
+
+
+
+    /*
+       Recognition finished
+    */
+
+    recognition.onend =
+        function() {
+
+            button.innerText =
+                t.voiceInputButton;
+
+        };
+
+}
+
+
+
+/* =====================================================
+   HISTORY
+===================================================== */
+
+function showHistory() {
+
+    const list =
+        document.getElementById(
+            "historyList"
+        );
+
+
+    if (!list) return;
+
+
+    const patient =
+        JSON.parse(
+            localStorage.getItem(
+                "currentPatient"
+            )
+        );
+
+
+    if (!patient) {
+
+        list.innerHTML = "";
+
+        return;
+
+    }
+
+
+    const cases =
+        JSON.parse(
+            localStorage.getItem(
+                "phcCases"
+            )
+        ) || [];
+
+
+    const patientCases =
+        cases.filter(
+            function(c) {
+
+                return (
+                    c.patientId ===
+                    patient.id
+                );
+
+            }
+        );
+
+
+    if (patientCases.length === 0) {
+
+        list.innerHTML =
+
+            `<p>
+                ${text[language].noHistory}
+             </p>`;
+
+        return;
+
+    }
+
+
+    list.innerHTML =
+        patientCases
+        .map(
+            function(c, index) {
+
+                return `
+
+                    <div class="case">
+
+                        <h3>
+                            ${index + 1}.
+                            ${text[language][
+                                c.priority.toLowerCase()
+                            ]}
+                        </h3>
+
+                        <p>
+                            <strong>
+                                ${language === "ta"
+                                    ? "அறிகுறிகள்:"
+                                    : "Symptoms:"}
+                            </strong>
+
+                            ${c.symptoms}
+                        </p>
+
+                        <p>
+                            <strong>
+                                ${language === "ta"
+                                    ? "தேதி:"
+                                    : "Date:"}
+                            </strong>
+
+                            ${c.date}
+                        </p>
+
+                    </div>
+
+                `;
+
+            }
+        )
+        .join("");
+
+}
+
+
+
+/* =====================================================
+   DOCTOR LOGIN
+===================================================== */
+
+function doctorLogin() {
+
+    const username =
+        document.getElementById(
+            "doctorUser"
+        ).value;
+
+
+    const password =
+        document.getElementById(
+            "doctorPass"
+        ).value;
+
+
+    const t =
+        text[language];
+
+
+    /*
+       Demo credentials
+    */
+
+    if (
+        username === "doctor" &&
+        password === "1234"
+    ) {
+
+        localStorage.setItem(
+            "doctorLoggedIn",
+            "true"
+        );
+
+
+        document.getElementById(
+            "doctorMessage"
+        ).innerHTML = "";
+
+
+        showPage(
+            "doctorDashboard"
+        );
+
+    }
+
+    else {
+
+        document.getElementById(
+            "doctorMessage"
+        ).innerHTML =
+
+            `<div class="error">
+                ${t.doctorError}
+             </div>`;
+
+    }
+
+}
+
+
+
+/* =====================================================
+   DOCTOR DASHBOARD
+===================================================== */
+
+function updateDoctorDashboard() {
+
+    const cases =
+        JSON.parse(
+            localStorage.getItem(
+                "phcCases"
+            )
+        ) || [];
+
+
+    let emergency = 0;
+
+    let urgent = 0;
+
+    let routine = 0;
+
+
+    cases.forEach(
+        function(c) {
+
+            if (
+                c.priority ===
+                "Emergency"
+            ) {
+
+                emergency++;
+
+            }
+
+            else if (
+                c.priority ===
+                "Urgent"
+            ) {
+
+                urgent++;
+
+            }
+
+            else {
+
+                routine++;
+
+            }
+
+        }
+    );
+
+
+    document.getElementById(
+        "emergencyCount"
+    ).innerText = emergency;
+
+
+    document.getElementById(
+        "urgentCount"
+    ).innerText = urgent;
+
+
+    document.getElementById(
+        "routineCount"
+    ).innerText = routine;
+
+
+    const list =
+        document.getElementById(
+            "casesList"
+        );
+
+
+    if (cases.length === 0) {
+
+        list.innerHTML =
+
+            `<p>
+                ${text[language].noCases}
+             </p>`;
+
+        return;
+
+    }
+
+
+    list.innerHTML =
+        cases
+        .map(
+            function(c, index) {
+
+                return `
+
+                    <div class="case">
+
+                        <h3>
+                            ${index + 1}.
+                            ${c.patientName}
+                        </h3>
+
+                        <p>
+                            <strong>
+                                Patient ID:
+                            </strong>
+
+                            ${c.patientId}
+                        </p>
+
+                        <p>
+                            <strong>
+                                Symptoms:
+                            </strong>
+
+                            ${c.symptoms}
+                        </p>
+
+                        <p>
+                            <strong>
+                                Priority:
+                            </strong>
+
+                            ${c.priority}
+                        </p>
+
+                        <p>
+                            <small>
+                                ${c.date}
+                            </small>
+                        </p>
+
+                    </div>
+
+                `;
+
+            }
+        )
+        .join("");
+
+}
+
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+function logout() {
+
+    localStorage.removeItem(
+        "currentPatient"
+    );
+
+    localStorage.removeItem(
+        "doctorLoggedIn"
+    );
+
+
+    showPage("home");
+
+}
+
+
+
+/* =====================================================
+   NAVIGATION TO DOCTOR LOGIN
+===================================================== */
+
+document.getElementById(
+    "loginNav"
+).addEventListener(
+    "contextmenu",
+    function(event) {
+
+        event.preventDefault();
+
+    }
+);
+
+
+/*
+   Double click on Login button
+   opens normal patient login.
+*/
+
+
+/* =====================================================
+   INITIAL LOAD
+===================================================== */
+
+changeLanguage("en");
+
+showPage("home");
+
+</script>
+
+</body>
+</html>
